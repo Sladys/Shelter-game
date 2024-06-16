@@ -1,5 +1,3 @@
-import React from "react";
-
 interface GameInfoProps {
   bunker: {
     description: string;
@@ -15,12 +13,13 @@ interface GameInfoProps {
   };
 }
 
-const GameInfo: React.FC<GameInfoProps> = ({ apocalypse, bunker }) => {
+const GameInfo = ({ apocalypse, bunker }: GameInfoProps): JSX.Element => {
   return (
-    <div className="grid grid-cols-2 rounded-lg bg-gray-100 p-4 gap-4">
+    <div className="grid grid-cols-2 gap-4 rounded-lg bg-gray-100 p-4">
       <div>
-        <h3 className="mb-2 text-xl font-semibold">Катастрофа:  {apocalypse.type}</h3>
-
+        <h3 className="mb-2 text-xl font-semibold">
+          Катастрофа: {apocalypse.type}
+        </h3>
         <p className="text-gray-700">{apocalypse.description}</p>
         <p className="mb-1 text-gray-700">
           <strong>Оставшееся население:</strong> {apocalypse.population}
