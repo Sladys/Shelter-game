@@ -1,4 +1,3 @@
-import React from "react";
 import GameInfo from "../../components/game/gameInfo";
 import { apocalypseData, bunkerData } from "../../mocks/bunkerData";
 import GameMenu from "../../components/game/gameMenu";
