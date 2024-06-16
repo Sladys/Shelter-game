@@ -1,14 +1,13 @@
-import "./App.css";
-
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p className="text-red-900 bg-gray-700 p-20 underline">Hello Ilya</p>
+    <>
+      <header className="flex h-screen items-center justify-center bg-gray-700">
+        <p className="m-auto p-20 text-9xl font-semibold text-pink-500">
+          Hello Sladys
+        </p>
       </header>
-    </div>
+    </>
   );
 }
 
 export default App;
-    
