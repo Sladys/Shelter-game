@@ -1,17 +1,9 @@
-interface GameInfoProps {
-  bunker: {
-    description: string;
-    food: string;
-    structure: string;
-    additional: string;
-  };
-  apocalypse: {
-    type: string;
-    description: string;
-    population: string;
-    period: string;
-  };
-}
+import { Apocalypse, BunkerData } from "../../types/types";
+
+type GameInfoProps = {
+  apocalypse: Apocalypse;
+  bunker: BunkerData;
+};
 
 const GameInfo = ({ apocalypse, bunker }: GameInfoProps): JSX.Element => {
   return (
