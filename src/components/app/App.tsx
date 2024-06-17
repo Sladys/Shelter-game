@@ -1,9 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PlayerCardList from "../game/playerCardList";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes></Routes>
+      <Routes>
+        <Route index element={<PlayerCardList />} />
+      </Routes>
     </BrowserRouter>
   );
 }
