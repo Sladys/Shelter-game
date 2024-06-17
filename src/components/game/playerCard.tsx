@@ -3,10 +3,10 @@ import { Fragment } from "react";
 function PlayerCard(): JSX.Element {
   return (
     <Fragment>
-      <li className="m-6 w-2/12 bg-green-300">
-        <div className="p-2 flex">
-          <span className="inline-block h-20 w-20 bg-red-700">avatar</span>
-          <span className="inline-block ml-8">nick</span>
+      <li className="m-6 w-2/12 bg-gray-100">
+        <div className="flex p-2">
+          <span className="inline-block h-20 w-20 bg-red-200">avatar</span>
+          <span className="ml-8 inline-block">nick</span>
         </div>
         <ul className="list-none p-2">
           <li>Специальность</li>
