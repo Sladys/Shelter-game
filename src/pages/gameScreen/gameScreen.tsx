@@ -1,11 +1,8 @@
 import GameInfo from "../../components/game/gameInfo";
-import { bunkersData } from "../../mocks/bunkerData";
-import { apocalypses } from "../../mocks/apocalypseData";
 import GameMenu from "../../components/game/gameMenu";
 import PlayerCardList from "../../components/game/playerCardList";
 import { getRandomElement } from "../../utils";
 import { Apocalypses, BunkersData, CardsInfo } from "../../types/types";
-import { playerCards } from "../../mocks/cards";
 
 type GameScreenProps = {
   apocalypses: Apocalypses;
@@ -25,7 +22,7 @@ function GameScreen({
         bunker={getRandomElement(bunkersData)}
       />
       <GameMenu />
-      <PlayerCardList cardsInfo={playerCards} />
+      <PlayerCardList cardsInfo={cardsInfo} />
     </main>
   );
 }
