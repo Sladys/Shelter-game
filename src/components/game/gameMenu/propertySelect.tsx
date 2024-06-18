@@ -2,7 +2,7 @@ import { CardInfo } from "../../../types/types";
 
 type PropertySelectProps = {
   value: keyof CardInfo | "";
-  onChange: (value: keyof CardInfo) => void;
+  onChange: (value: keyof CardInfo | "") => void;
 };
 
 function PropertySelect({ value, onChange }: PropertySelectProps): JSX.Element {
@@ -10,7 +10,7 @@ function PropertySelect({ value, onChange }: PropertySelectProps): JSX.Element {
     <select
       className="w-full"
       value={value}
-      onChange={(e) => onChange(e.target.value as keyof CardInfo)}
+      onChange={(e) => onChange(e.target.value as keyof CardInfo | "")}
     >
       <option value="" disabled>
         Выбрать характеристику

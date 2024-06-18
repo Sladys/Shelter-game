@@ -1,49 +1,35 @@
-import SelectOption from "./selectOption";
-import PropertySelect from "./propertySelect";
-import { CardInfo } from "../../../types/types";
+import { CardInfo } from "../../../../types/types";
+import PropertySelect from "../propertySelect";
+import SelectOption from "../selectOption";
 
-type SwapOptionsProps = {
+type UpdateOptionsProps = {
   numOfCards: number;
   selectedIndex1: number | null;
-  selectedIndex2: number | null;
   property: keyof CardInfo | "";
   onSelectIndex1: (index: number) => void;
-  onSelectIndex2: (index: number) => void;
-  onSelectProperty: (property: keyof CardInfo) => void;
-  onSwap: () => void;
+  onSelectProperty: (property: keyof CardInfo | "") => void;
+  onUpdate: () => void;
   onBack: () => void;
 };
 
-function SwapOptions({
+function UpdateOptions({
   numOfCards,
   selectedIndex1,
-  selectedIndex2,
   property,
   onSelectIndex1,
-  onSelectIndex2,
   onSelectProperty,
-  onSwap,
+  onUpdate,
   onBack,
-}: SwapOptionsProps): JSX.Element {
+}: UpdateOptionsProps): JSX.Element {
   return (
     <ul className="flex flex-col gap-2">
       <li>
         <label className="flex w-full justify-between">
-          Номер первого игрока:
+          Номер игрока для замены:
           <SelectOption
             numOfCards={numOfCards}
             value={selectedIndex1}
             onChange={onSelectIndex1}
-          />
-        </label>
-      </li>
-      <li>
-        <label className="flex w-full justify-between">
-          Номер второго игрока:
-          <SelectOption
-            numOfCards={numOfCards}
-            value={selectedIndex2}
-            onChange={onSelectIndex2}
           />
         </label>
       </li>
@@ -53,8 +39,11 @@ function SwapOptions({
           <PropertySelect value={property} onChange={onSelectProperty} />
         </label>
       </li>
-      <li className="flex justify-between mt-3">
-        <button onClick={onSwap} className="rounded bg-gray-600 p-2 text-white">
+      <li className="mt-3 flex justify-between">
+        <button
+          onClick={onUpdate}
+          className="rounded bg-gray-600 p-2 text-white"
+        >
           Подтвердить
         </button>
         <button onClick={onBack} className="rounded bg-gray-600 p-2 text-white">
@@ -65,4 +54,4 @@ function SwapOptions({
   );
 }
 
-export default SwapOptions;
+export default UpdateOptions;
