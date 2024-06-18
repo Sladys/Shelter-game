@@ -14,7 +14,7 @@ function MainOptions({
       <li className="mb-2">
         <button
           onClick={onUpdateClick}
-          className="rounded bg-gray-600 p-2 text-white"
+          className="w-full rounded bg-gray-600 p-2 text-white"
         >
           Обновить характеристику игрока
         </button>
@@ -22,7 +22,7 @@ function MainOptions({
       <li className="mb-2">
         <button
           onClick={onSwapClick}
-          className="rounded bg-gray-600 p-2 text-white"
+          className="w-full rounded bg-gray-600 p-2 text-white"
         >
           Поменять характеристики игроков
         </button>
@@ -30,7 +30,7 @@ function MainOptions({
       <li className="mb-2">
         <button
           onClick={onUpdateAllClick}
-          className="rounded bg-gray-600 p-2 text-white"
+          className="w-full rounded bg-gray-600 p-2 text-white"
         >
           Обновить характеристику для всех
         </button>

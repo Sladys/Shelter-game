@@ -15,22 +15,20 @@ function UpdateAllOptions({
   onBack,
 }: UpdateAllOptionsProps): JSX.Element {
   return (
-    <ul>
-      <li className="mb-2">
+    <ul className="flex flex-col gap-2">
+      <li>
         <label>
           Характеристика для замены:
           <PropertySelect value={property} onChange={onSelectProperty} />
         </label>
       </li>
-      <li className="mb-2">
+      <li className="mt-3 flex justify-between">
         <button
           onClick={onUpdateAll}
           className="rounded bg-gray-600 p-2 text-white"
         >
           Подтвердить
         </button>
-      </li>
-      <li className="mb-2">
         <button onClick={onBack} className="rounded bg-gray-600 p-2 text-white">
           Назад
         </button>

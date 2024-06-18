@@ -17,6 +17,7 @@ function SelectOption({
 
   return (
     <select
+      className="text-center"
       value={value ?? ""}
       onChange={(e) => onChange(Number(e.target.value))}
     >

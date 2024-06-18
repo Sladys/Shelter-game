@@ -93,7 +93,7 @@ function GameMenu({
   return (
     <>
       <button
-        className="top-50 fixed right-4 z-50 rounded bg-gray-600 p-2 text-white"
+        className="fixed right-4 top-4 z-50 rounded bg-gray-600 p-2 text-white"
         onClick={toggleMenu}
       >
         Открыть
@@ -107,7 +107,7 @@ function GameMenu({
       )}
 
       <div
-        className={`fixed right-0 top-0 z-50 h-full w-96 transform bg-gray-200 shadow-lg transition-transform duration-300 ${
+        className={`fixed right-0 top-0 z-50 h-full w-80 transform bg-gray-200 shadow-lg transition-transform duration-300 ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -118,7 +118,7 @@ function GameMenu({
           >
             Закрыть
           </button>
-          <h2 className="mb-4 text-xl font-bold">Админ панель</h2>
+          <h2 className="mb-10 text-xl font-bold">Админ панель</h2>
           {warningMessage && (
             <div className="mb-4 rounded bg-red-200 p-2 text-red-800">
               {warningMessage}
