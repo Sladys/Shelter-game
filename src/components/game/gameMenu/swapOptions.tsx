@@ -26,9 +26,9 @@ function SwapOptions({
   onBack,
 }: SwapOptionsProps): JSX.Element {
   return (
-    <ul>
-      <li className="mb-2">
-        <label>
+    <ul className="flex flex-col gap-2">
+      <li>
+        <label className="flex w-full justify-between">
           Номер первого игрока:
           <SelectOption
             numOfCards={numOfCards}
@@ -37,8 +37,8 @@ function SwapOptions({
           />
         </label>
       </li>
-      <li className="mb-2">
-        <label>
+      <li>
+        <label className="flex w-full justify-between">
           Номер второго игрока:
           <SelectOption
             numOfCards={numOfCards}
@@ -47,18 +47,16 @@ function SwapOptions({
           />
         </label>
       </li>
-      <li className="mb-2">
+      <li>
         <label>
           Характеристика для замены:
           <PropertySelect value={property} onChange={onSelectProperty} />
         </label>
       </li>
-      <li className="mb-2">
+      <li className="flex justify-between mt-3">
         <button onClick={onSwap} className="rounded bg-gray-600 p-2 text-white">
           Подтвердить
         </button>
-      </li>
-      <li className="mb-2">
         <button onClick={onBack} className="rounded bg-gray-600 p-2 text-white">
           Назад
         </button>

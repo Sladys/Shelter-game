@@ -8,6 +8,7 @@ type PropertySelectProps = {
 function PropertySelect({ value, onChange }: PropertySelectProps): JSX.Element {
   return (
     <select
+      className="w-full"
       value={value}
       onChange={(e) => onChange(e.target.value as keyof CardInfo)}
     >
