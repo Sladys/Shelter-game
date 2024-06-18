@@ -63,7 +63,7 @@ function GameMenu({
       setWarningMessage("Номер первого игрока не выбран.");
     } else if (selectedIndex2 === null) {
       setWarningMessage("Номер второго игрока не выбран.");
-    } else if (property !== "") {
+    } else if (property === "") {
       setWarningMessage("Характеристика не выбрана.");
     }
     if (selectedIndex1 !== null && selectedIndex2 !== null && property !== "") {
@@ -81,7 +81,7 @@ function GameMenu({
   };
 
   const handleUpdateAllCardsProperty = () => {
-    if (property !== "") {
+    if (property === "") {
       setWarningMessage("Характеристика не выбрана.");
     }
     if (property !== "") {
