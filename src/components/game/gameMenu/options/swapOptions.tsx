@@ -1,35 +1,49 @@
-import { CardInfo } from "../../../types/types";
-import PropertySelect from "./propertySelect";
-import SelectOption from "./selectOption";
+import SelectOption from "../selectOption";
+import PropertySelect from "../propertySelect";
+import { CardInfo } from "../../../../types/types";
 
-type UpdateOptionsProps = {
+type SwapOptionsProps = {
   numOfCards: number;
   selectedIndex1: number | null;
+  selectedIndex2: number | null;
   property: keyof CardInfo | "";
   onSelectIndex1: (index: number) => void;
+  onSelectIndex2: (index: number) => void;
   onSelectProperty: (property: keyof CardInfo | "") => void;
-  onUpdate: () => void;
+  onSwap: () => void;
   onBack: () => void;
 };
 
-function UpdateOptions({
+function SwapOptions({
   numOfCards,
   selectedIndex1,
+  selectedIndex2,
   property,
   onSelectIndex1,
+  onSelectIndex2,
   onSelectProperty,
-  onUpdate,
+  onSwap,
   onBack,
-}: UpdateOptionsProps): JSX.Element {
+}: SwapOptionsProps): JSX.Element {
   return (
     <ul className="flex flex-col gap-2">
       <li>
         <label className="flex w-full justify-between">
-          Номер игрока для замены:
+          Номер первого игрока:
           <SelectOption
             numOfCards={numOfCards}
             value={selectedIndex1}
             onChange={onSelectIndex1}
+          />
+        </label>
+      </li>
+      <li>
+        <label className="flex w-full justify-between">
+          Номер второго игрока:
+          <SelectOption
+            numOfCards={numOfCards}
+            value={selectedIndex2}
+            onChange={onSelectIndex2}
           />
         </label>
       </li>
@@ -40,10 +54,7 @@ function UpdateOptions({
         </label>
       </li>
       <li className="mt-3 flex justify-between">
-        <button
-          onClick={onUpdate}
-          className="rounded bg-gray-600 p-2 text-white"
-        >
+        <button onClick={onSwap} className="rounded bg-gray-600 p-2 text-white">
           Подтвердить
         </button>
         <button onClick={onBack} className="rounded bg-gray-600 p-2 text-white">
@@ -54,4 +65,4 @@ function UpdateOptions({
   );
 }
 
-export default UpdateOptions;
+export default SwapOptions;

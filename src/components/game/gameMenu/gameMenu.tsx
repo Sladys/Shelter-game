@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { CardInfo } from "../../../types/types";
 import MainOptions from "./mainOptions";
-import UpdateOptions from "./updateOptions";
-import SwapOptions from "./swapOptions";
-import UpdateAllOptions from "./updateAllOptions";
+import UpdateOptions from "./options/updateOptions";
+import SwapOptions from "./options/swapOptions";
+import UpdateAllOptions from "./options/updateAllOptions";
 
 type GameMenuProps = {
   updateCardProperty: (index: number, key: keyof CardInfo) => void;
@@ -36,6 +36,7 @@ function GameMenu({
     setCurrentAction(null);
     setWarningMessage("");
   };
+
   const toggleMenu = () => {
     resetActions();
     setIsMenuOpen(!isMenuOpen);
@@ -46,15 +47,33 @@ function GameMenu({
     setIsMenuOpen(false);
   };
 
-  const handleUpdateCardProperty = () => {
+  const validateFields = (): boolean => {
     if (selectedIndex1 === null) {
       setWarningMessage("Номер игрока не выбран.");
-    } else if (property === "") {
-      setWarningMessage("Характеристика не выбрана.");
+      return false;
     }
+    if (property === "") {
+      setWarningMessage("Характеристика не выбрана.");
+      return false;
+    }
+    return true;
+  };
+
+  const handleUpdateCardProperty = () => {
     if (selectedIndex1 !== null && property !== "") {
       updateCardProperty(selectedIndex1, property as keyof CardInfo);
       resetActions();
+    } else {
+      validateFields();
+    }
+  };
+
+  const handleUpdateAllCardsProperty = () => {
+    if (property !== "") {
+      updateAllCardsProperty(property as keyof CardInfo);
+      resetActions();
+    } else {
+      setWarningMessage("Характеристика не выбрана.");
     }
   };
 
@@ -76,16 +95,6 @@ function GameMenu({
         selectedIndex2,
         property as keyof CardInfo,
       );
-      resetActions();
-    }
-  };
-
-  const handleUpdateAllCardsProperty = () => {
-    if (property === "") {
-      setWarningMessage("Характеристика не выбрана.");
-    }
-    if (property !== "") {
-      updateAllCardsProperty(property as keyof CardInfo);
       resetActions();
     }
   };

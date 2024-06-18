@@ -2,7 +2,11 @@ import { useState } from "react";
 import { CardInfo, CardsInfo } from "../../types/types";
 import PlayerCard from "./playerCard";
 import GameMenu from "./gameMenu/gameMenu";
-import { generateNewCardInfo, generateNewValueForKey, getRandomElement } from "../../utils";
+import {
+  generateNewCardInfo,
+  generateNewValueForKey,
+  getRandomElement,
+} from "../../utils";
 
 type PlayerCardListProps = {
   cardsInfo: CardsInfo;
