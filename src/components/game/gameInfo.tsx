@@ -5,7 +5,7 @@ type GameInfoProps = {
   bunker: BunkerData;
 };
 
-const GameInfo = ({ apocalypse, bunker }: GameInfoProps): JSX.Element => {
+function GameInfo ({ apocalypse, bunker }: GameInfoProps): JSX.Element {
   return (
     <div className="grid grid-cols-2 gap-4 rounded-lg bg-gray-100 p-4">
       <div>
