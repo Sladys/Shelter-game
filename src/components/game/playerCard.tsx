@@ -1,48 +1,73 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { CardInfo } from "../../types/types";
+import { createArrShowName } from "../../utils";
 
 type PlayerCardProps = {
   cardInfo: CardInfo;
+  id: number;
 };
 
-function PlayerCard({ cardInfo }: PlayerCardProps): JSX.Element {
+function PlayerCard({ cardInfo, id }: PlayerCardProps): JSX.Element {
+  const [playerCard, setPlayerCard] = useState(cardInfo);
+  const [name, setName] = useState([
+    "Специальность",
+    "Пол, возраст",
+    "Хобби",
+    "Багаж",
+    "Фобия",
+    "Состояние здоровья",
+    "Доп. информация",
+    "Спец Возможность №1",
+    "Спец Возможность №2",
+  ]);
+  const [show, setShow] = useState(createArrShowName());
+
+  const openCardChar = (e: any) => {
+    setPlayerCard((prevItem) => {
+      e.target.classList.add('hidden');
+      setShow((prevArray) => {
+        const newArray = [...prevArray];
+        newArray[e.target.id] = false;
+        return newArray;
+      });
+      return prevItem;
+    });
+  };
+
+  useEffect(() => {
+    setPlayerCard(cardInfo);
+
+    return () => {};
+  }, [cardInfo]);
+
   return (
     <Fragment>
-      <li className="m-6 w-[320px] bg-gray-100">
+      <li id={String(id)} className="m-6 w-[320px] bg-gray-100">
         <div className="flex p-2">
           <span className="inline-block h-20 w-20 bg-red-200">avatar</span>
           <span className="ml-8 inline-block">nick</span>
         </div>
         <ul className="list-none p-2">
-          <li>
-            Специальность: <span className="ml-2">{cardInfo.profession}</span>
-          </li>
-          <li>
-            Пол, возраст: <span className="ml-2">{cardInfo.bio}</span>
-          </li>
-          <li>
-            Хобби: <span className="ml-2">{cardInfo.hobby}</span>
-          </li>
-          <li>
-            Багаж: <span className="ml-2">{cardInfo.inventory}</span>
-          </li>
-          <li>
-            Фобия: <span className="ml-2">{cardInfo.phobia}</span>
-          </li>
-          <li>
-            Состояние здоровья: <span className="ml-2">{cardInfo.health}</span>
-          </li>
-          <li>
-            Доп. информация:<span className="ml-2">{cardInfo.additional}</span>
-          </li>
-        </ul>
-        <ul className="list-none border-t-2 border-indigo-900 p-2">
-          <li>
-            Спец Возможность №1: <span className="ml-2">{cardInfo.actionFirst}</span>
-          </li>
-          <li>
-            Спец Возможность №2: <span className="ml-2">{cardInfo.actionSecond}</span>
-          </li>
+          {Array.from({ length: 9 }, (_, i) => (
+            <Fragment key={i}>
+              <li
+                id={`${i}`}
+                key={i}
+                value={Object.keys(playerCard)[i]}
+                className="relative inline-block"
+              >
+                {show[i] ? name[i] : Object.values(playerCard)[i]}
+                <img
+                  src="images/yey-svgrepo-com.svg"
+                  alt="123"
+                  className="absolute right-[-30px] top-[1px] w-6"
+                  id={`${i}`}
+                  onClick={openCardChar}
+                />
+              </li>
+              <br />
+            </Fragment>
+          ))}
         </ul>
       </li>
     </Fragment>
