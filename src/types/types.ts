@@ -22,6 +22,8 @@ export type CardInfo = {
   additional: string;
   actionFirst: string;
   actionSecond: string;
+  id: string;
+  order: string;
 }; 
 
 export type CardsInfo = CardInfo[];
