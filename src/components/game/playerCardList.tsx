@@ -2,7 +2,11 @@ import { useState } from "react";
 import { CardInfo, CardsInfo } from "../../types/types";
 import PlayerCard from "./playerCard";
 import GameMenu from "./gameMenu/gameMenu";
-import { generateNewCardInfo, generateNewValueForKey, getRandomElement } from "../../utils";
+import {
+  generateNewCardInfo,
+  generateNewValueForKey,
+  getRandomElement,
+} from "../../utils";
 
 type PlayerCardListProps = {
   cardsInfo: CardsInfo;
@@ -52,7 +56,12 @@ function PlayerCardList({
     <>
       <ul className="container mx-auto flex list-none flex-wrap justify-between">
         {playerCards.map((card, index) => (
-          <PlayerCard key={index} cardInfo={card} />
+          <PlayerCard
+            key={index}
+            cardInfo={card}
+            id={index}
+
+          />
         ))}
       </ul>
       <GameMenu
