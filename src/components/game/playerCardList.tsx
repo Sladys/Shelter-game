@@ -56,7 +56,12 @@ function PlayerCardList({
     <>
       <ul className="container mx-auto flex list-none flex-wrap justify-between">
         {playerCards.map((card, index) => (
-          <PlayerCard key={index} cardInfo={card} />
+          <PlayerCard
+            key={index}
+            cardInfo={card}
+            id={index}
+
+          />
         ))}
       </ul>
       <GameMenu

@@ -1,4 +1,22 @@
+import { infoNameCard } from "./mocks/const";
 import { CardInfo } from "./types/types";
+
+export function objectToArray() {
+  let arrNames: any = [];
+  infoNameCard.forEach((item) => arrNames.push(item));
+  let arr = [];
+  arr.push(arrNames);
+  return arr;
+}
+
+export let arrShowName = [true, true, true, true, true, true, true, true, true]
+
+export function createArrShowName() {
+  let arrShowNames : Array<boolean> = [];
+  arrShowName.forEach((item) => arrShowNames.push(item));
+
+  return arrShowNames;
+}
 
 export const getRandomElement = (arr: any[]) =>
   arr[Math.floor(Math.random() * arr.length)];
