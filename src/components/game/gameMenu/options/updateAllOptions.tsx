@@ -3,7 +3,7 @@ import PropertySelect from "../propertySelect";
 
 type UpdateAllOptionsProps = {
   property: keyof CardInfo | "";
-  onSelectProperty: (property: keyof CardInfo | "") => void;
+  onSelectProperty: (property: keyof CardInfo) => void;
   onUpdateAll: () => void;
   onBack: () => void;
 };

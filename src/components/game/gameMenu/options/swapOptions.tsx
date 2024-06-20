@@ -9,7 +9,7 @@ type SwapOptionsProps = {
   property: keyof CardInfo | "";
   onSelectIndex1: (index: number) => void;
   onSelectIndex2: (index: number) => void;
-  onSelectProperty: (property: keyof CardInfo | "") => void;
+  onSelectProperty: (property: keyof CardInfo) => void;
   onSwap: () => void;
   onBack: () => void;
 };

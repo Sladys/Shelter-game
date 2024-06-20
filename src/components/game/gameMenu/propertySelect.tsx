@@ -1,30 +1,34 @@
 import { CardInfo } from "../../../types/types";
+import Select from "../../ui/select";
 
 type PropertySelectProps = {
   value: keyof CardInfo | "";
-  onChange: (value: keyof CardInfo | "") => void;
+  onChange: (value: keyof CardInfo) => void;
 };
+
+const options = [
+  { value: "profession", label: "Специальность" },
+  { value: "bio", label: "Пол, возраст" },
+  { value: "hobby", label: "Хобби" },
+  { value: "inventory", label: "Багаж" },
+  { value: "phobia", label: "Фобия" },
+  { value: "health", label: "Состояние здоровья" },
+  { value: "additional", label: "Доп. информация" },
+  { value: "actionFirst", label: "Спец. Возможность №1" },
+  { value: "actionSecond", label: "Спец. Возможность №2" },
+];
+
+const buttonContent = "Выбрать характеристику";
 
 function PropertySelect({ value, onChange }: PropertySelectProps): JSX.Element {
   return (
-    <select
-      className="w-full"
-      value={value}
-      onChange={(e) => onChange(e.target.value as keyof CardInfo | "")}
-    >
-      <option value="" disabled>
-        Выбрать характеристику
-      </option>
-      <option value="profession">Специальность</option>
-      <option value="bio">Пол, возраст</option>
-      <option value="hobby">Хобби</option>
-      <option value="inventory">Багаж</option>
-      <option value="phobia">Фобия</option>
-      <option value="health">Состояние здоровья</option>
-      <option value="additional">Доп. информация</option>
-      <option value="actionFirst">Спец. Возможность №1</option>
-      <option value="actionSecond">Спец. Возможность №2</option>
-    </select>
+    <Select
+      options={options}
+      value={value?.toString() ?? ""}
+      onChange={(val) => onChange(val as keyof CardInfo)}
+      buttonContent={buttonContent}
+      widthClass="w-full"
+    />
   );
 }
 

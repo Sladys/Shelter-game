@@ -7,7 +7,7 @@ type UpdateOptionsProps = {
   selectedIndex1: number | null;
   property: keyof CardInfo | "";
   onSelectIndex1: (index: number) => void;
-  onSelectProperty: (property: keyof CardInfo | "") => void;
+  onSelectProperty: (property: keyof CardInfo) => void;
   onUpdate: () => void;
   onBack: () => void;
 };
