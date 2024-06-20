@@ -2,19 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./components/app/App";
-import { apocalypses } from "./mocks/apocalypseData";
-import { bunkersData } from "./mocks/bunkerData";
-import { playerCards } from "./mocks/cards";
+import { Provider } from "react-redux";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import store from "./store";
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-    <App
-      apocalypses={apocalypses}
-      bunkersData={bunkersData}
-      cardsInfo={playerCards}
-    />
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>,
 );

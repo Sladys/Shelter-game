@@ -1,8 +1,8 @@
-import GameInfo from "../../components/game/gameInfo";
-import PlayerCardList from "../../components/game/playerCardList";
-import GameMenu from "../../components/game/gameMenu/gameMenu";
-import { getRandomElement } from "../../utils";
-import { Apocalypses, BunkersData, CardsInfo } from "../../types/types";
+import GameInfo from "../components/game/gameInfo";
+import PlayerCardList from "../components/game/playerCardList";
+import GameMenu from "../components/game/gameMenu/gameMenu";
+import { getRandomElement } from "../utils";
+import { Apocalypses, BunkersData, CardsInfo } from "../types/types";
 
 type GameScreenProps = {
   apocalypses: Apocalypses;
@@ -15,7 +15,7 @@ function GameScreen({
   apocalypses,
   bunkersData,
 }: GameScreenProps): JSX.Element {
-  const numOfCards = 5; /// количество карточек, должно поступать при начале игры
+  const numOfCards = 16; /// количество карточек, должно поступать при начале игры
 
   return (
     <main className="container mx-auto flex h-screen flex-col items-center">
