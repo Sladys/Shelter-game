@@ -17,7 +17,7 @@ function Button({
     <button
       type={type}
       onClick={onClick}
-      className={`rounded bg-gray-600 p-2 text-white transition-colors duration-300 hover:bg-gray-700 disabled:opacity-50 ${className}`}
+      className={`rounded bg-gray-600 p-2 font-semibold text-white transition-colors duration-300 hover:bg-gray-700 disabled:opacity-50 ${className}`}
       disabled={disabled}
     >
       {children}
