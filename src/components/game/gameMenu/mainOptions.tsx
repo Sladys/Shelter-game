@@ -1,3 +1,5 @@
+import Button from "../../ui/button";
+
 type MainOptionsProps = {
   onUpdateClick: () => void;
   onSwapClick: () => void;
@@ -12,28 +14,25 @@ function MainOptions({
   return (
     <ul>
       <li className="mb-2">
-        <button
+        <Button
+          children="Обновить характеристику игрока"
           onClick={onUpdateClick}
-          className="w-full rounded bg-gray-600 p-2 text-white"
-        >
-          Обновить характеристику игрока
-        </button>
+          className="w-full"
+        />
       </li>
       <li className="mb-2">
-        <button
-          onClick={onSwapClick}
-          className="w-full rounded bg-gray-600 p-2 text-white"
-        >
-          Поменять характеристики игроков
-        </button>
+        <Button
+          children="Поменять характеристики игроков"
+          onClick={onUpdateClick}
+          className="w-full"
+        />
       </li>
       <li className="mb-2">
-        <button
+        <Button
+          children="Поменять характеристики игроков"
           onClick={onUpdateAllClick}
-          className="w-full rounded bg-gray-600 p-2 text-white"
-        >
-          Обновить характеристику для всех
-        </button>
+          className="w-full"
+        />
       </li>
     </ul>
   );

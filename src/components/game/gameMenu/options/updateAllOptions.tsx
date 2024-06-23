@@ -1,4 +1,5 @@
 import { CardInfo } from "../../../../types/types";
+import Button from "../../../ui/button";
 import PropertySelect from "../propertySelect";
 
 type UpdateAllOptionsProps = {
@@ -23,15 +24,8 @@ function UpdateAllOptions({
         </label>
       </li>
       <li className="mt-3 flex justify-between">
-        <button
-          onClick={onUpdateAll}
-          className="rounded bg-gray-600 p-2 text-white"
-        >
-          Подтвердить
-        </button>
-        <button onClick={onBack} className="rounded bg-gray-600 p-2 text-white">
-          Назад
-        </button>
+        <Button children="Подтвердить" onClick={onUpdateAll} />
+        <Button children="Назад" onClick={onBack} />
       </li>
     </ul>
   );

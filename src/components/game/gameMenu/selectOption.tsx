@@ -26,7 +26,7 @@ function SelectOption({
       options={options}
       value={value !== null ? value.toString() : ""}
       onChange={(value) => onChange(Number(value))}
-      buttonContent={buttonContent}
+      children={buttonContent}
       widthClass="w-16"
     />
   );
