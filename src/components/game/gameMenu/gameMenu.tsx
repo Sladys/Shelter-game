@@ -43,7 +43,6 @@ function GameMenu({
   };
 
   const closeMenu = () => {
-    resetActions();
     setIsMenuOpen(false);
   };
 
