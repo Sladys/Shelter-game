@@ -2,6 +2,7 @@ import SelectOption from "../selectOption";
 import PropertySelect from "../propertySelect";
 import { CardInfo } from "../../../../types/types";
 import Button from "../../../ui/button";
+import { ArrowUturnLeftIcon } from "@heroicons/react/16/solid";
 
 type SwapOptionsProps = {
   numOfCards: number;
@@ -55,8 +56,11 @@ function SwapOptions({
         </label>
       </li>
       <li className="mt-3 flex justify-between">
-        <Button children="Подтвердить" onClick={onSwap} />
-        <Button children="Назад" onClick={onBack} />
+        <Button onClick={onSwap}>Подтвердить</Button>
+
+        <Button onClick={onBack}>
+          <ArrowUturnLeftIcon className="h-6 w-6" />
+        </Button>
       </li>
     </ul>
   );

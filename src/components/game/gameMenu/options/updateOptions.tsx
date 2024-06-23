@@ -1,3 +1,4 @@
+import { ArrowUturnLeftIcon } from "@heroicons/react/16/solid";
 import { CardInfo } from "../../../../types/types";
 import Button from "../../../ui/button";
 import PropertySelect from "../propertySelect";
@@ -41,8 +42,10 @@ function UpdateOptions({
         </label>
       </li>
       <li className="mt-3 flex justify-between">
-        <Button children="Подтвердить" onClick={onUpdate} />
-        <Button children="Назад" onClick={onBack} />
+        <Button onClick={onUpdate}>Подтвердить</Button>
+        <Button onClick={onBack}>
+          <ArrowUturnLeftIcon className="h-6 w-6" />
+        </Button>
       </li>
     </ul>
   );

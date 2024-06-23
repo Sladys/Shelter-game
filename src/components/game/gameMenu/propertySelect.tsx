@@ -18,17 +18,16 @@ const options = [
   { value: "actionSecond", label: "Спец. Возможность №2" },
 ];
 
-const buttonContent = "Выбрать характеристику";
-
 function PropertySelect({ value, onChange }: PropertySelectProps): JSX.Element {
   return (
     <Select
       options={options}
       value={value !== "" ? value : ""}
       onChange={(val) => onChange(val as keyof CardInfo)}
-      children={buttonContent}
       widthClass="w-full"
-    />
+    >
+      Выбрать характеристику
+    </Select>
   );
 }
 

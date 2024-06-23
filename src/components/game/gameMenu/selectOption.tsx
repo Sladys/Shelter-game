@@ -18,17 +18,15 @@ function SelectOption({
     label: (index + 1).toString(),
   }));
 
-  const buttonContent = <BarsArrowDownIcon className="h-6 w-6" />;
-
   return (
-
     <Select
       options={options}
       value={value !== null ? value.toString() : ""}
       onChange={(value) => onChange(Number(value))}
-      children={buttonContent}
       widthClass="w-16"
-    />
+    >
+      <BarsArrowDownIcon className="h-6 w-6" />
+    </Select>
   );
 }
 

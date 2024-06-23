@@ -14,25 +14,19 @@ function MainOptions({
   return (
     <ul>
       <li className="mb-2">
-        <Button
-          children="Обновить характеристику игрока"
-          onClick={onUpdateClick}
-          className="w-full"
-        />
+        <Button onClick={onUpdateClick} className="w-full">
+          Обновить характеристику игрока
+        </Button>
       </li>
       <li className="mb-2">
-        <Button
-          children="Поменять характеристики игроков"
-          onClick={onUpdateClick}
-          className="w-full"
-        />
+        <Button onClick={onUpdateClick} className="w-full">
+          Поменять характеристики игроков
+        </Button>
       </li>
       <li className="mb-2">
-        <Button
-          children="Поменять характеристики игроков"
-          onClick={onUpdateAllClick}
-          className="w-full"
-        />
+        <Button onClick={onUpdateAllClick} className="w-full">
+          Поменять характеристики игроков
+        </Button>
       </li>
     </ul>
   );

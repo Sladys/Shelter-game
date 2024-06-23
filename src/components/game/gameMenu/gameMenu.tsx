@@ -5,6 +5,7 @@ import UpdateOptions from "./options/updateOptions";
 import SwapOptions from "./options/swapOptions";
 import UpdateAllOptions from "./options/updateAllOptions";
 import Button from "../../ui/button";
+import { Bars4Icon, XMarkIcon } from "@heroicons/react/16/solid";
 
 type GameMenuProps = {
   updateCardProperty: (index: number, key: keyof CardInfo) => void;
@@ -101,11 +102,9 @@ function GameMenu({
 
   return (
     <>
-      <Button
-        children="Открыть"
-        onClick={toggleMenu}
-        className="fixed right-4 top-4 z-50"
-      />
+      <Button onClick={toggleMenu} className="fixed right-4 top-4 z-50">
+        <Bars4Icon className="h-6 w-6" />
+      </Button>
 
       {isMenuOpen && (
         <div
@@ -120,13 +119,11 @@ function GameMenu({
         }`}
       >
         <div className="p-4">
-          <Button
-            children="Закрыть"
-            onClick={closeMenu}
-            className="absolute right-4 top-4"
-          />
+          <Button onClick={closeMenu} className="absolute right-4 top-4">
+            <XMarkIcon className="h-6 w-6" />
+          </Button>
 
-          <h2 className="mb-10 text-xl font-bold">Админ панель</h2>
+          <h2 className="mb-10 mt-2 text-xl font-bold">Админ панель</h2>
           {warningMessage && (
             <div className="mb-4 rounded bg-red-200 p-2 text-red-800">
               {warningMessage}
