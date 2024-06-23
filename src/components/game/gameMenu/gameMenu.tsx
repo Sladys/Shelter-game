@@ -4,6 +4,7 @@ import MainOptions from "./mainOptions";
 import UpdateOptions from "./options/updateOptions";
 import SwapOptions from "./options/swapOptions";
 import UpdateAllOptions from "./options/updateAllOptions";
+import Button from "../../ui/button";
 
 type GameMenuProps = {
   updateCardProperty: (index: number, key: keyof CardInfo) => void;
@@ -100,12 +101,11 @@ function GameMenu({
 
   return (
     <>
-      <button
-        className="fixed right-4 top-4 z-50 rounded bg-gray-600 p-2 text-white"
+      <Button
+        children="Открыть"
         onClick={toggleMenu}
-      >
-        Открыть
-      </button>
+        className="fixed right-4 top-4 z-50"
+      />
 
       {isMenuOpen && (
         <div
@@ -120,12 +120,12 @@ function GameMenu({
         }`}
       >
         <div className="p-4">
-          <button
-            className="absolute right-4 top-4 rounded bg-gray-600 p-2 text-white"
+          <Button
+            children="Закрыть"
             onClick={closeMenu}
-          >
-            Закрыть
-          </button>
+            className="absolute right-4 top-4"
+          />
+
           <h2 className="mb-10 text-xl font-bold">Админ панель</h2>
           {warningMessage && (
             <div className="mb-4 rounded bg-red-200 p-2 text-red-800">

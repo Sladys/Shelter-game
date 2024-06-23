@@ -2,23 +2,23 @@ import React, { useState, useEffect, useRef } from "react";
 
 type Option = {
   value: string;
-  label: string | JSX.Element;
+  label: React.ReactNode;
 };
 
 type SelectProps = {
   options: Option[];
   value: string;
   onChange: (value: string) => void;
-  buttonContent: string | JSX.Element;
   widthClass: string;
+  children?: React.ReactNode;
 };
 
 function Select({
   options,
   value,
   onChange,
-  buttonContent,
   widthClass,
+  children,
 }: SelectProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
@@ -63,12 +63,12 @@ function Select({
   return (
     <div ref={selectRef} className={`relative ${widthClass}`}>
       <div
-        className="flex cursor-pointer select-none justify-center rounded bg-emerald-200 p-2"
+        className="flex cursor-pointer justify-center rounded bg-emerald-200 p-2"
         onClick={() => setIsOpen(!isOpen)}
       >
         {value
           ? options.find((option) => option.value === value)?.label
-          : buttonContent}
+          : children}
       </div>
       <ul
         ref={ulRef}
@@ -84,14 +84,14 @@ function Select({
             key={option.value}
             role="button"
             onClick={() => handleSelect(option.value)}
-            className="cursor-pointer select-none p-2 text-center hover:bg-emerald-200"
+            className="cursor-pointer p-2 text-center hover:bg-emerald-200"
           >
             {option.label}
           </li>
         ))}
       </ul>
       <div className="invisible absolute">
-        <div className="px-3 py-2">{buttonContent}</div>
+        <div className="px-3 py-2">{children}</div>
       </div>
     </div>
   );
