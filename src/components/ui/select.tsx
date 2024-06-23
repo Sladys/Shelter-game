@@ -63,7 +63,7 @@ function Select({
   return (
     <div ref={selectRef} className={`relative ${widthClass}`}>
       <div
-        className="flex cursor-pointer justify-center rounded bg-emerald-200 p-2"
+        className="flex cursor-pointer select-none justify-center rounded bg-emerald-200 p-2"
         onClick={() => setIsOpen(!isOpen)}
       >
         {value
@@ -84,7 +84,7 @@ function Select({
             key={option.value}
             role="button"
             onClick={() => handleSelect(option.value)}
-            className="cursor-pointer p-2 text-center hover:bg-emerald-200"
+            className="cursor-pointer select-none p-2 text-center hover:bg-emerald-200"
           >
             {option.label}
           </li>
