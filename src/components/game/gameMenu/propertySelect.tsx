@@ -24,9 +24,9 @@ function PropertySelect({ value, onChange }: PropertySelectProps): JSX.Element {
   return (
     <Select
       options={options}
-      value={value?.toString() ?? ""}
+      value={value !== "" ? value : ""}
       onChange={(val) => onChange(val as keyof CardInfo)}
-      buttonContent={buttonContent}
+      children={buttonContent}
       widthClass="w-full"
     />
   );

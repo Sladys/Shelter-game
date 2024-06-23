@@ -1,4 +1,5 @@
 import { CardInfo } from "../../../../types/types";
+import Button from "../../../ui/button";
 import PropertySelect from "../propertySelect";
 import SelectOption from "../selectOption";
 
@@ -40,15 +41,8 @@ function UpdateOptions({
         </label>
       </li>
       <li className="mt-3 flex justify-between">
-        <button
-          onClick={onUpdate}
-          className="rounded bg-gray-600 p-2 text-white"
-        >
-          Подтвердить
-        </button>
-        <button onClick={onBack} className="rounded bg-gray-600 p-2 text-white">
-          Назад
-        </button>
+        <Button children="Подтвердить" onClick={onUpdate} />
+        <Button children="Назад" onClick={onBack} />
       </li>
     </ul>
   );

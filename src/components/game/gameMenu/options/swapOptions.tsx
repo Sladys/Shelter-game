@@ -1,6 +1,7 @@
 import SelectOption from "../selectOption";
 import PropertySelect from "../propertySelect";
 import { CardInfo } from "../../../../types/types";
+import Button from "../../../ui/button";
 
 type SwapOptionsProps = {
   numOfCards: number;
@@ -54,12 +55,8 @@ function SwapOptions({
         </label>
       </li>
       <li className="mt-3 flex justify-between">
-        <button onClick={onSwap} className="rounded bg-gray-600 p-2 text-white">
-          Подтвердить
-        </button>
-        <button onClick={onBack} className="rounded bg-gray-600 p-2 text-white">
-          Назад
-        </button>
+        <Button children="Подтвердить" onClick={onSwap} />
+        <Button children="Назад" onClick={onBack} />
       </li>
     </ul>
   );
