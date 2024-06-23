@@ -23,7 +23,7 @@ function SelectOption({
       options={options}
       value={value !== null ? value.toString() : ""}
       onChange={(value) => onChange(Number(value))}
-      widthClass="w-16"
+      className="w-16"
     >
       <BarsArrowDownIcon className="h-6 w-6" />
     </Select>

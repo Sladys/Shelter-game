@@ -24,7 +24,7 @@ function PropertySelect({ value, onChange }: PropertySelectProps): JSX.Element {
       options={options}
       value={value !== "" ? value : ""}
       onChange={(val) => onChange(val as keyof CardInfo)}
-      widthClass="w-full"
+      className="w-full"
     >
       Выбрать характеристику
     </Select>
