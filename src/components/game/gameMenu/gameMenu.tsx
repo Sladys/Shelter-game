@@ -114,7 +114,7 @@ function GameMenu({
       )}
 
       <div
-        className={`fixed right-0 top-0 z-50 h-full w-80 transform bg-gray-200 shadow-lg transition-transform duration-300 ${
+        className={`fixed right-0 top-0 z-50 h-full w-80 transform bg-gray-200 shadow-lg transition-transform duration-300 dark:bg-gray-800 ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

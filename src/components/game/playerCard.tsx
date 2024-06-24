@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { CardInfo } from "../../types/types";
 import { createArrShowName } from "../../utils";
+import { EyeSlashIcon } from "@heroicons/react/16/solid";
 
 type PlayerCardProps = {
   cardInfo: CardInfo;
@@ -23,29 +24,34 @@ function PlayerCard({ cardInfo, id }: PlayerCardProps): JSX.Element {
   const [show, setShow] = useState(createArrShowName());
 
   const openCardChar = (e: any) => {
-    setPlayerCard((prevItem) => {
-      e.target.classList.add('hidden');
-      setShow((prevArray) => {
-        const newArray = [...prevArray];
-        newArray[e.target.id] = false;
-        return newArray;
-      });
-      return prevItem;
+    e.preventDefault();
+    const index = Number(e.currentTarget.id);
+
+    e.currentTarget.classList.add("hidden");
+
+    setShow((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[index] = false;
+      return newArray;
     });
   };
 
   useEffect(() => {
     setPlayerCard(cardInfo);
-
-    return () => {};
   }, [cardInfo]);
 
   return (
     <Fragment>
-      <li id={String(id)} className="m-6 w-[320px] bg-gray-100">
-        <div className="flex p-2">
-          <span className="inline-block h-20 w-20 bg-red-200">avatar</span>
-          <span className="ml-8 inline-block">nick</span>
+      <li
+        id={String(id)}
+        className="relative w-[320px] rounded-lg border-2 border-indigo-500 bg-gray-100 p-2 dark:border-indigo-300 dark:bg-slate-700"
+      >
+        <div className="flex items-center justify-between p-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-indigo-500 bg-indigo-100 font-bold dark:border-indigo-100 dark:bg-indigo-500">
+            {id + 1}
+          </div>
+          <span className="text-2xl font-semibold">nickname</span>
+          <span className="h-20 w-20 rounded-full bg-indigo-300"></span>
         </div>
         <ul className="list-none p-2">
           {Array.from({ length: 9 }, (_, i) => (
@@ -57,13 +63,14 @@ function PlayerCard({ cardInfo, id }: PlayerCardProps): JSX.Element {
                 className="relative inline-block"
               >
                 {show[i] ? name[i] : Object.values(playerCard)[i]}
-                <img
-                  src="images/yey-svgrepo-com.svg"
-                  alt="123"
-                  className="absolute right-[-30px] top-[1px] w-6"
+
+                <button
                   id={`${i}`}
                   onClick={openCardChar}
-                />
+                  className="absolute right-[-30px] top-[1px]"
+                >
+                  <EyeSlashIcon className="h-6 w-6" />
+                </button>
               </li>
               <br />
             </Fragment>

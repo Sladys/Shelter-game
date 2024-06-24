@@ -81,7 +81,7 @@ function RegisterForm(): JSX.Element {
           required
         />
       </div>
-      <Button type="submit" className="w-full">
+      <Button type="submit" className="mt-6 w-full">
         Зарегистрироваться
       </Button>
     </form>

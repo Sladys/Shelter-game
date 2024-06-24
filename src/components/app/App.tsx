@@ -4,24 +4,33 @@ import { apocalypses } from "../../mocks/apocalypseData";
 import { bunkersData } from "../../mocks/bunkerData";
 import { playerCards } from "../../mocks/cards";
 import Auth from "../../pages/auth";
+import Button from "../ui/button";
+import { useTheme } from "../../context/themeContext";
 
 function App() {
+  const { toggleTheme } = useTheme();
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/auth" element={<Auth />} />
-        <Route
-          path="/game"
-          element={
-            <GameScreen
-              apocalypses={apocalypses}
-              bunkersData={bunkersData}
-              cardsInfo={playerCards}
-            />
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <div className="min-h-screen min-w-full overflow-y-auto bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+      <Button onClick={toggleTheme} className="fixed left-4 top-4">
+        Toggle
+      </Button>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/auth" element={<Auth />} />
+          <Route
+            path="/game"
+            element={
+              <GameScreen
+                apocalypses={apocalypses}
+                bunkersData={bunkersData}
+                cardsInfo={playerCards}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

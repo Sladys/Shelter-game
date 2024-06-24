@@ -213,7 +213,7 @@ function Select({
                 key={option.value}
                 role="button"
                 onClick={() => handleSelect(option.value)}
-                className={`cursor-pointer p-2 ${i % 2 === 0 ? "bg-indigo-100" : "bg-indigo-100/70"} text-center hover:bg-indigo-200`}
+                className={`cursor-pointer p-2 ${i % 2 === 0 ? "bg-indigo-100" : "bg-indigo-100/70"} text-center text-gray-900 hover:bg-indigo-200`}
                 style={{ height: `${ITEM_HEIGHT}px` }}
               >
                 {option.label}

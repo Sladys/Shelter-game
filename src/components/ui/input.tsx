@@ -41,7 +41,7 @@ function Input({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded p-2 focus:outline-none focus:ring-2 focus:ring-indigo-700 dark:bg-gray-600 dark:focus:ring-indigo-400"
+        className="w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-indigo-700 dark:border-gray-500 dark:bg-gray-600 dark:focus:ring-indigo-400"
         disabled={disabled}
         required={required}
         name={name}
@@ -53,7 +53,7 @@ function Input({
           type="button"
           onClick={toggleShowPassword}
           tabIndex={-1}
-          className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+          className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 dark:text-gray-400"
         >
           {showPassword ? (
             <EyeIcon className="h-5 w-5" />

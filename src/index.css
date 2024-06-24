@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  scrollbar-width: thin;
+  @apply scrollbar-thin scrollbar-track-violet-200 scrollbar-thumb-indigo-500;
 }
 
 body {
