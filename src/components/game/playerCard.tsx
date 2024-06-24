@@ -44,7 +44,7 @@ function PlayerCard({ cardInfo, id }: PlayerCardProps): JSX.Element {
     <Fragment>
       <li
         id={String(id)}
-        className="relative w-[320px] rounded-lg border-2 border-indigo-500 bg-gray-100 p-2 dark:border-indigo-300 dark:bg-slate-700"
+        className="relative w-[350px] rounded-lg border-2 border-indigo-500 bg-gray-100 p-2 dark:border-indigo-300 dark:bg-slate-700"
       >
         <div className="flex items-center justify-between p-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-full border border-indigo-500 bg-indigo-100 font-bold dark:border-indigo-100 dark:bg-indigo-500">
