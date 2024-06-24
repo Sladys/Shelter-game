@@ -12,18 +12,18 @@ function MainOptions({
   onUpdateAllClick,
 }: MainOptionsProps): JSX.Element {
   return (
-    <ul>
-      <li className="mb-2">
+    <ul className="flex flex-col gap-3">
+      <li>
         <Button onClick={onUpdateClick} className="w-full">
           Обновить характеристику игрока
         </Button>
       </li>
-      <li className="mb-2">
-        <Button onClick={onUpdateClick} className="w-full">
+      <li>
+        <Button onClick={onSwapClick} className="w-full">
           Поменять характеристики игроков
         </Button>
       </li>
-      <li className="mb-2">
+      <li>
         <Button onClick={onUpdateAllClick} className="w-full">
           Поменять характеристики игроков
         </Button>

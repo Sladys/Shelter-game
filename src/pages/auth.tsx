@@ -11,17 +11,17 @@ function Auth(): JSX.Element {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 px-4">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 px-4 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
       <div className="mb-6 flex space-x-4">
         <button
-          className={`text-lg font-medium ${isLogin ? "border-b-2 border-emerald-500 text-emerald-500" : "text-gray-500"}`}
+          className={`text-lg font-medium ${isLogin ? "border-b-2 border-indigo-700 text-indigo-700 dark:border-indigo-400 dark:text-indigo-400" : "text-gray-500"}`}
           onClick={() => toggleForm(true)}
         >
           Вход
         </button>
         <span className="text-lg text-gray-500">/</span>
         <button
-          className={`text-lg font-medium ${!isLogin ? "border-b-2 border-emerald-500 text-emerald-500" : "text-gray-500"}`}
+          className={`text-lg font-medium ${!isLogin ? "border-b-2 border-indigo-700 text-indigo-700 dark:border-indigo-400 dark:text-indigo-400" : "text-gray-500"}`}
           onClick={() => toggleForm(false)}
         >
           Регистрация

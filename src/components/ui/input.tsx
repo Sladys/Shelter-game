@@ -41,7 +41,7 @@ function Input({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+        className="w-full rounded p-2 focus:outline-none focus:ring-2 focus:ring-indigo-700 dark:bg-gray-600 dark:focus:ring-indigo-400"
         disabled={disabled}
         required={required}
         name={name}
@@ -57,7 +57,7 @@ function Input({
         >
           {showPassword ? (
             <EyeIcon className="h-5 w-5" />
-            ) : (
+          ) : (
             <EyeSlashIcon className="h-5 w-5" />
           )}
         </button>

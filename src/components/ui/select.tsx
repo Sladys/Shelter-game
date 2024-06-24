@@ -171,9 +171,9 @@ function Select({
   }, [isOpen]);
 
   return (
-    <div ref={selectRef} className={`relative ${className}`}>
+    <div ref={selectRef} className={`relative font-semibold ${className}`}>
       <div
-        className="flex cursor-pointer justify-center rounded bg-emerald-200 p-2"
+        className="flex cursor-pointer justify-center rounded border-2 border-indigo-300 bg-indigo-200 p-2 text-gray-900"
         onClick={() => {
           setIsOpen(!isOpen);
           if (!isOpen) {
@@ -192,7 +192,7 @@ function Select({
           onWheel={handleWheelScroll}
           data-select
           style={{ maxHeight: `${VISIBLE_ITEMS * ITEM_HEIGHT}px` }}
-          className={`absolute z-10 mt-1 w-full transform overflow-hidden rounded border bg-white transition-all duration-300 ${
+          className={`absolute z-10 mt-1 w-full transform overflow-hidden rounded border-2 border-indigo-300 bg-white transition-all duration-300 ${
             isVisible
               ? "max-h-96 translate-y-0 opacity-100"
               : "max-h-0 -translate-y-3 opacity-0"
@@ -208,12 +208,12 @@ function Select({
             </div>
           )}
           <ul>
-            {options.map((option) => (
+            {options.map((option, i) => (
               <li
                 key={option.value}
                 role="button"
                 onClick={() => handleSelect(option.value)}
-                className="cursor-pointer p-2 text-center hover:bg-emerald-200"
+                className={`cursor-pointer p-2 ${i % 2 === 0 ? "bg-indigo-100" : "bg-indigo-100/70"} text-center hover:bg-indigo-200`}
                 style={{ height: `${ITEM_HEIGHT}px` }}
               >
                 {option.label}

@@ -32,7 +32,10 @@ function RegisterForm(): JSX.Element {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-lg bg-white p-6 shadow-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-lg bg-white p-6 shadow-lg dark:bg-slate-800"
+    >
       <h2 className="mb-4 text-center text-2xl font-bold">Регистрация</h2>
       <div className="mb-4">
         <label htmlFor="register-username" className="mb-1 block">
