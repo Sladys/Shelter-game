@@ -1,40 +1,61 @@
-import { Apocalypse, BunkerData } from "../../types/types";
+import { useDispatch, useSelector } from "react-redux";
+import { ApocalypseInfo, BunkerInfo } from "../../types/types";
+import { RootState } from "../../store/store";
+import { useEffect } from "react";
+import { generateBunkerInfo } from "../../store/slices/bunkersSlice";
+import { generateApocalypseInfo } from "../../store/slices/apocalypsesSlice";
 
-type GameInfoProps = {
-  apocalypse: Apocalypse;
-  bunker: BunkerData;
-};
+function GameInfo(): JSX.Element {
+  const dispatch = useDispatch();
+  const bunkerInfo: BunkerInfo | null = useSelector(
+    (state: RootState) => state.bunkers.bunkersData,
+  );
+  const apocalypseInfo: ApocalypseInfo | null = useSelector(
+    (state: RootState) => state.apocalypses.apocalypse,
+  );
 
-function GameInfo({ apocalypse, bunker }: GameInfoProps): JSX.Element {
+  useEffect(() => {
+    dispatch(generateBunkerInfo());
+    dispatch(generateApocalypseInfo());
+  }, [dispatch]);
+
   return (
     <div className="grid w-full grid-cols-2 gap-4 rounded-lg border-2 border-indigo-500 bg-gray-100 p-4 dark:border-indigo-300 dark:bg-slate-700">
-      <div>
-        <h3 className="mb-2 text-xl font-semibold">
-          Катастрофа: {apocalypse.type}
-        </h3>
-        <p className="">{apocalypse.description}</p>
-        <p>
-          <strong>Оставшееся население:</strong> {apocalypse.population}
-        </p>
-        <p>
-          <strong>Время в бункере:</strong> {apocalypse.period}
-        </p>
-      </div>
-      <div className="mb-6">
-        <h3 className="mb-2 text-xl font-semibold">Бункер</h3>
-        <p>
-          <strong>Описание Бункера:</strong> {bunker.description}
-        </p>
-        <p className="">
-          <strong>Запасы еды:</strong> {bunker.food}
-        </p>
-        <p className="">
-          <strong>Строение:</strong> {bunker.structure}
-        </p>
-        <p className="">
-          <strong>Дополнительная информация:</strong> {bunker.additional}
-        </p>
-      </div>
+      {apocalypseInfo ? (
+        <div>
+          <h3 className="mb-2 text-xl font-semibold">
+            Катастрофа: {apocalypseInfo.type}
+          </h3>
+          <p className="">{apocalypseInfo.description}</p>
+          <p>
+            <strong>Оставшееся население:</strong> {apocalypseInfo.population}
+          </p>
+          <p>
+            <strong>Время в бункере:</strong> {apocalypseInfo.period}
+          </p>
+        </div>
+      ) : (
+        <p>Загрузка информации о катастрофе...</p>
+      )}
+      {bunkerInfo ? (
+        <div>
+          <h3 className="mb-2 text-xl font-semibold">Бункер</h3>
+          <p>
+            <strong>Описание Бункера:</strong> {bunkerInfo.description}
+          </p>
+          <p className="">
+            <strong>Запасы еды:</strong> {bunkerInfo.food}
+          </p>
+          <p className="">
+            <strong>Строение:</strong> {bunkerInfo.structure}
+          </p>
+          <p className="">
+            <strong>Дополнительная информация:</strong> {bunkerInfo.additional}
+          </p>
+        </div>
+      ) : (
+        <p>Загрузка информации о бункере...</p>
+      )}
     </div>
   );
 }

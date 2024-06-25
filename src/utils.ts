@@ -9,10 +9,10 @@ export function objectToArray() {
   return arr;
 }
 
-export let arrShowName = [true, true, true, true, true, true, true, true, true]
+export let arrShowName = [true, true, true, true, true, true, true, true, true];
 
 export function createArrShowName() {
-  let arrShowNames : Array<boolean> = [];
+  let arrShowNames: Array<boolean> = [];
   arrShowName.forEach((item) => arrShowNames.push(item));
 
   return arrShowNames;

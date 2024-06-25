@@ -1,11 +1,11 @@
-export type Apocalypse = {
+export type ApocalypseInfo = {
   type: string;
   description: string;
   population: string;
   period: string;
 };
 
-export type BunkerData = {
+export type BunkerInfo = {
   description: string;
   food: string;
   structure: string;
@@ -27,5 +27,5 @@ export type CardInfo = {
 }; 
 
 export type CardsInfo = CardInfo[];
-export type BunkersData = BunkerData[];
-export type Apocalypses = Apocalypse[];
+export type BunkersData = BunkerInfo[];
+export type Apocalypses = ApocalypseInfo[];

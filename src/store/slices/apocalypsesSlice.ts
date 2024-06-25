@@ -1,23 +1,33 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Apocalypses } from "../../types/types";
+import { ApocalypseInfo } from "../../types/types";
+import { apocalypses } from "../../mocks/apocalypseData";
 
 interface ApocalypsesState {
-  apocalypses: Apocalypses | null;
+  apocalypse: ApocalypseInfo | null;
 }
 
 const initialState: ApocalypsesState = {
-  apocalypses: null,
+  apocalypse: null,
+};
+
+const generateApocalypseData = (): ApocalypseInfo => {
+  const randomIndex = Math.floor(Math.random() * apocalypses.length);
+  return apocalypses[randomIndex];
 };
 
 const apocalypsesSlice = createSlice({
   name: "apocalypses",
   initialState,
   reducers: {
-    setApocalypses: (state, action: PayloadAction<Apocalypses>) => {
-      state.apocalypses = action.payload;
+    setApocalypse: (state, action: PayloadAction<ApocalypseInfo>) => {
+      state.apocalypse = action.payload;
+    },
+    generateApocalypseInfo: (state) => {
+      state.apocalypse = generateApocalypseData();
     },
   },
 });
 
-export const { setApocalypses } = apocalypsesSlice.actions;
+export const { setApocalypse, generateApocalypseInfo } =
+  apocalypsesSlice.actions;
 export default apocalypsesSlice.reducer;

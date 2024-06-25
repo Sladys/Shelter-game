@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { CardInfo } from "../../types/types";
+import { CardInfo, CardsInfo } from "../../types/types";
 import {
   generateNewCardInfo,
   generateNewValueForKey,
@@ -54,6 +54,15 @@ export const playerCardsSlice = createSlice({
         [key]: generateNewValueForKey(key),
       }));
     },
+    initializePlayerCards: (
+      state,
+      action: PayloadAction<{ cardsInfo: CardsInfo; numOfCards: number }>,
+    ) => {
+      const { cardsInfo, numOfCards } = action.payload;
+      state.playerCards = Array.from({ length: numOfCards }, () =>
+        getRandomElement(cardsInfo),
+      );
+    },
   },
 });
 
@@ -62,6 +71,7 @@ export const {
   updateCardProperty,
   swapCardProperty,
   updateAllCardsProperty,
+  initializePlayerCards,
 } = playerCardsSlice.actions;
 
 export const selectPlayerCards = (state: RootState) =>
