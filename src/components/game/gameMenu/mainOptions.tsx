@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { generateApocalypseInfo } from "../../../store/slices/apocalypsesSlice";
+import { generateBunkerInfo } from "../../../store/slices/bunkersSlice";
 import Button from "../../ui/button";
 
 type MainOptionsProps = {
@@ -11,6 +14,11 @@ function MainOptions({
   onSwapClick,
   onUpdateAllClick,
 }: MainOptionsProps): JSX.Element {
+  const dispatch = useDispatch();
+
+  const handleUpdateBunkerInfo = () => dispatch(generateBunkerInfo());
+  const handleUpdateApocalypseInfo = () => dispatch(generateApocalypseInfo());
+
   return (
     <ul className="flex flex-col gap-3">
       <li>
@@ -25,7 +33,17 @@ function MainOptions({
       </li>
       <li>
         <Button onClick={onUpdateAllClick} className="w-full">
-          Поменять характеристики игроков
+          Обновить характеристики всем
+        </Button>
+      </li>
+      <li>
+        <Button onClick={handleUpdateBunkerInfo} className="w-full">
+          Изменить бункер
+        </Button>
+      </li>
+      <li>
+        <Button onClick={handleUpdateApocalypseInfo} className="w-full">
+          Изменить катастрофу
         </Button>
       </li>
     </ul>
