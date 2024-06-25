@@ -6,30 +6,25 @@ import SwapOptions from "./options/swapOptions";
 import UpdateAllOptions from "./options/updateAllOptions";
 import Button from "../../ui/button";
 import { Bars4Icon, XMarkIcon } from "@heroicons/react/16/solid";
-
-type GameMenuProps = {
-  updateCardProperty: (index: number, key: keyof CardInfo) => void;
-  swapCardProperty: (
-    index1: number,
-    index2: number,
-    property: keyof CardInfo,
-  ) => void;
-  updateAllCardsProperty: (key: keyof CardInfo) => void;
-  numOfCards: number;
-};
-
-function GameMenu({
-  updateCardProperty,
+import { useDispatch, useSelector } from "react-redux";
+import { toggleMenu } from "../../../store/slices/gameMenuSlice";
+import { RootState } from "../../../store/store";
+import {
   swapCardProperty,
   updateAllCardsProperty,
-  numOfCards,
-}: GameMenuProps): JSX.Element {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  updateCardProperty,
+} from "../../../store/slices/playerCardsSlice";
+import { NUM_OF_CARDS } from "../../../const";
+
+function GameMenu(): JSX.Element {
   const [currentAction, setCurrentAction] = useState<string | null>(null);
   const [selectedIndex1, setSelectedIndex1] = useState<number | null>(null);
   const [selectedIndex2, setSelectedIndex2] = useState<number | null>(null);
   const [property, setProperty] = useState<keyof CardInfo | "">("");
   const [warningMessage, setWarningMessage] = useState<string>("");
+
+  const showMenu = useSelector((state: RootState) => state.gameMenu.showMenu);
+  const dispatch = useDispatch();
 
   const resetActions = () => {
     setSelectedIndex1(null);
@@ -37,15 +32,6 @@ function GameMenu({
     setProperty("");
     setCurrentAction(null);
     setWarningMessage("");
-  };
-
-  const toggleMenu = () => {
-    resetActions();
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
   };
 
   const validateFields = (): boolean => {
@@ -62,16 +48,20 @@ function GameMenu({
 
   const handleUpdateCardProperty = () => {
     if (selectedIndex1 !== null && property !== "") {
-      updateCardProperty(selectedIndex1, property as keyof CardInfo);
+      dispatch(updateCardProperty({
+        index: selectedIndex1,
+        key: property as keyof CardInfo,
+      }));
       resetActions();
     } else {
       validateFields();
     }
+    console.log()
   };
 
   const handleUpdateAllCardsProperty = () => {
     if (property !== "") {
-      updateAllCardsProperty(property as keyof CardInfo);
+      dispatch(updateAllCardsProperty(property as keyof CardInfo));
       resetActions();
     } else {
       setWarningMessage("Характеристика не выбрана.");
@@ -91,22 +81,25 @@ function GameMenu({
         setWarningMessage("Номера участников не должны совпадать.");
         return;
       }
-      swapCardProperty(
-        selectedIndex1,
-        selectedIndex2,
-        property as keyof CardInfo,
-      );
+      dispatch(swapCardProperty({
+        index1: selectedIndex1,
+        index2: selectedIndex2,
+        property: property as keyof CardInfo,
+      }));
       resetActions();
     }
   };
 
+  const openMenu = () => dispatch(toggleMenu());
+  const closeMenu = () => dispatch(toggleMenu());
+
   return (
     <>
-      <Button onClick={toggleMenu} className="fixed right-4 top-4 z-50">
+      <Button onClick={openMenu}>
         <Bars4Icon className="h-6 w-6" />
       </Button>
 
-      {isMenuOpen && (
+      {showMenu && (
         <div
           className="fixed inset-0 z-40 bg-black bg-opacity-50"
           onClick={closeMenu}
@@ -115,7 +108,7 @@ function GameMenu({
 
       <div
         className={`fixed right-0 top-0 z-50 h-full w-80 transform bg-gray-200 shadow-lg transition-transform duration-300 dark:bg-gray-800 ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
+          showMenu ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="p-4">
@@ -138,7 +131,7 @@ function GameMenu({
           )}
           {currentAction === "update" && (
             <UpdateOptions
-              numOfCards={numOfCards}
+              numOfCards={NUM_OF_CARDS}
               selectedIndex1={selectedIndex1}
               property={property}
               onSelectIndex1={setSelectedIndex1}
@@ -152,7 +145,7 @@ function GameMenu({
           )}
           {currentAction === "swap" && (
             <SwapOptions
-              numOfCards={numOfCards}
+              numOfCards={NUM_OF_CARDS}
               selectedIndex1={selectedIndex1}
               selectedIndex2={selectedIndex2}
               property={property}

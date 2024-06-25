@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, ReactElement } from "react";
 import { CardInfo } from "../../types/types";
 import { createArrShowName } from "../../utils";
 import { EyeSlashIcon } from "@heroicons/react/16/solid";

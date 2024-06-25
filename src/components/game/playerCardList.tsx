@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { CardInfo, CardsInfo } from "../../types/types";
 import PlayerCard from "./playerCard";
 import GameMenu from "./gameMenu/gameMenu";
@@ -7,6 +7,9 @@ import {
   generateNewValueForKey,
   getRandomElement,
 } from "../../utils";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { updatePlayerCards } from "../../store/slices/playerCardsSlice";
 
 type PlayerCardListProps = {
   cardsInfo: CardsInfo;
@@ -17,54 +20,25 @@ function PlayerCardList({
   cardsInfo,
   numOfCards,
 }: PlayerCardListProps): JSX.Element {
-  const [playerCards, setPlayerCards] = useState<CardsInfo>(
-    Array.from({ length: numOfCards }, () => getRandomElement(cardsInfo)),
+  const playerCards = useSelector(
+    (state: RootState) => state.playerCards.playerCards,
   );
+  const dispatch = useDispatch();
 
-  const updateCardProperty = (index: number, key: keyof CardInfo) => {
-    setPlayerCards((prevCards) =>
-      prevCards.map((card, i) =>
-        i === index ? { ...card, ...generateNewCardInfo(key) } : card,
-      ),
+  useEffect(() => {
+    const initialPlayerCards = Array.from({ length: numOfCards }, () =>
+      getRandomElement(cardsInfo),
     );
-  };
-
-  const swapCardProperty = (
-    index1: number,
-    index2: number,
-    property: keyof CardInfo,
-  ) => {
-    setPlayerCards((prevCards) => {
-      const newCards = [...prevCards];
-      const temp = newCards[index1][property];
-      newCards[index1][property] = newCards[index2][property];
-      newCards[index2][property] = temp;
-      return newCards;
-    });
-  };
-
-  const updateAllCardsProperty = (key: keyof CardInfo) => {
-    setPlayerCards((prevCards) =>
-      prevCards.map((card) => ({
-        ...card,
-        [key]: generateNewValueForKey(key),
-      })),
-    );
-  };
+    dispatch(updatePlayerCards(initialPlayerCards));
+  }, [dispatch, cardsInfo, numOfCards]);
 
   return (
     <>
-      <ul className="container mx-auto flex list-none flex-wrap justify-between gap-5">
+      <ul className="container mx-auto flex list-none flex-wrap justify-around gap-5">
         {playerCards.map((card, index) => (
           <PlayerCard key={index} cardInfo={card} id={index} />
         ))}
       </ul>
-      <GameMenu
-        updateCardProperty={updateCardProperty}
-        swapCardProperty={swapCardProperty}
-        updateAllCardsProperty={updateAllCardsProperty}
-        numOfCards={numOfCards}
-      />
     </>
   );
 }
