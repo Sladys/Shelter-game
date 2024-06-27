@@ -21,9 +21,12 @@ export const playerCardsSlice = createSlice({
       state,
       action: PayloadAction<{ cardsInfo: CardInfo[]; numOfCards: number }>,
     ) => {
-      state.playerCards = action.payload.cardsInfo;
+      state.playerCards = action.payload.cardsInfo.slice(
+        0,
+        action.payload.numOfCards,
+      );
       state.cardStates = {};
-      action.payload.cardsInfo.forEach((_, index) => {
+      state.playerCards.forEach((_, index) => {
         state.cardStates[index] = Array(9).fill(true);
       });
     },

@@ -7,24 +7,22 @@ import {
   initializePlayerCards,
   updateCardState,
 } from "../../store/slices/playerCardsSlice";
+import { NUM_OF_CARDS } from "../../constants/constants";
 
 type PlayerCardListProps = {
   cardsInfo: CardsInfo;
-  numOfCards: number;
 };
 
-function PlayerCardList({
-  cardsInfo,
-  numOfCards,
-}: PlayerCardListProps): JSX.Element {
+function PlayerCardList({ cardsInfo }: PlayerCardListProps): JSX.Element {
   const dispatch = useDispatch();
   const playerCards = useSelector(
     (state: RootState) => state.playerCards.playerCards,
   );
+  const numOfCards = NUM_OF_CARDS;
 
   useEffect(() => {
     dispatch(initializePlayerCards({ cardsInfo, numOfCards }));
-  }, [dispatch, cardsInfo, numOfCards]);
+  }, [dispatch, cardsInfo]);
 
   const toggleCardVisibility = (cardId: number, elementIndex: number) => {
     dispatch(updateCardState({ cardId, elementIndex, show: false }));
