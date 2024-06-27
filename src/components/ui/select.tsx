@@ -230,8 +230,8 @@ function Select({
                 value === option.value ? "bg-indigo-200" : ""
               }`}
               onClick={() => handleSelect(option.value)}
-              onMouseEnter={() => handleOptionMouseEnter(index)} // Передача индекса опции
-              onMouseLeave={handleOptionMouseLeave} // Без аргументов, так как onOptionMouseLeave не требует аргументов
+              onMouseEnter={() => handleOptionMouseEnter(index)}
+              onMouseLeave={handleOptionMouseLeave}
             >
               {option.label}
             </div>

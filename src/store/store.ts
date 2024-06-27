@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cardsReducer from "./slices/cardsSlice";
 import apocalypsesReducer from "./slices/apocalypsesSlice";
 import bunkersReducer from "./slices/bunkersSlice";
 import gameReducer from "./slices/gameSlice";
@@ -8,7 +7,6 @@ import playerCardsReducer from "./slices/playerCardsSlice";
 
 const store = configureStore({
   reducer: {
-    cards: cardsReducer,
     apocalypses: apocalypsesReducer,
     bunkers: bunkersReducer,
     game: gameReducer,

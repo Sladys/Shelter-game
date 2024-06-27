@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ApocalypseInfoComponent from "./apocalypseInfoComponent";
 import BunkerInfoComponent from "./bunkerInfoComponent";
 import { useEffect } from "react";

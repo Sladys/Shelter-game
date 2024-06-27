@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { RootState } from "../../store/store";
 import { useSelector, useDispatch } from "react-redux";
 import PlayerCard from "./playerCard";

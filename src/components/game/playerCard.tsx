@@ -11,7 +11,7 @@ import {
 type PlayerCardProps = {
   cardInfo: CardInfo;
   id: number;
-  toggleVisibility?: (cardId: number, elementIndex: number) => void; // Изменено на два аргумента
+  toggleVisibility?: (cardId: number, elementIndex: number) => void;
 };
 
 function PlayerCard({
@@ -39,7 +39,7 @@ function PlayerCard({
     const index = Number(e.currentTarget.id);
     e.currentTarget.classList.add("hidden");
     if (toggleVisibility) {
-      toggleVisibility(id, index); // Передаем идентификатор карточки и индекс элемента
+      toggleVisibility(id, index);
     } else {
       dispatch(
         updateCardState({ cardId: id, elementIndex: index, show: false }),
