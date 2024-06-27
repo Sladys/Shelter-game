@@ -12,6 +12,8 @@ type SelectProps = {
   onChange: (value: string) => void;
   className?: string;
   children?: React.ReactNode;
+  onOptionMouseEnter?: (index: number) => void;
+  onOptionMouseLeave?: () => void;
 };
 
 const VISIBLE_ITEMS = 10; // Количество видимых элементов
@@ -23,6 +25,8 @@ function Select({
   onChange,
   className = "",
   children,
+  onOptionMouseEnter,
+  onOptionMouseLeave,
 }: SelectProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -170,6 +174,18 @@ function Select({
     };
   }, [isOpen]);
 
+  const handleOptionMouseEnter = (index: number) => {
+    if (onOptionMouseEnter) {
+      onOptionMouseEnter(index);
+    }
+  };
+
+  const handleOptionMouseLeave = () => {
+    if (onOptionMouseLeave) {
+      onOptionMouseLeave();
+    }
+  };
+
   return (
     <div ref={selectRef} className={`relative font-semibold ${className}`}>
       <div
@@ -207,19 +223,19 @@ function Select({
               <ChevronUpIcon className="h-6 w-6 text-gray-500" />
             </div>
           )}
-          <ul>
-            {options.map((option, i) => (
-              <li
-                key={option.value}
-                role="button"
-                onClick={() => handleSelect(option.value)}
-                className={`cursor-pointer p-2 ${i % 2 === 0 ? "bg-indigo-100" : "bg-indigo-100/70"} text-center text-gray-900 hover:bg-indigo-200`}
-                style={{ height: `${ITEM_HEIGHT}px` }}
-              >
-                {option.label}
-              </li>
-            ))}
-          </ul>
+          {options.map((option, index) => (
+            <div
+              key={option.value}
+              className={`flex cursor-pointer items-center justify-center p-2 text-gray-900 hover:bg-indigo-100 ${
+                value === option.value ? "bg-indigo-200" : ""
+              }`}
+              onClick={() => handleSelect(option.value)}
+              onMouseEnter={() => handleOptionMouseEnter(index)} // Передача индекса опции
+              onMouseLeave={handleOptionMouseLeave} // Без аргументов, так как onOptionMouseLeave не требует аргументов
+            >
+              {option.label}
+            </div>
+          ))}
           {isScrollable && !isAtBottom && (
             <div
               className="sticky inset-x-0 bottom-0 flex h-8 cursor-pointer items-center justify-center bg-gradient-to-t from-gray-200 to-transparent"

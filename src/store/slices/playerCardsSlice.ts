@@ -1,24 +1,45 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { CardInfo, CardsInfo } from "../../types/types";
-import {
-  generateNewCardInfo,
-  generateNewValueForKey,
-  getRandomElement,
-} from "../../utils";
+import { CardInfo } from "../../types/types";
+import { generateNewCardInfo, generateNewValueForKey } from "../../utils";
 
-interface PlayerCardsState {
+type PlayerCardsState = {
   playerCards: CardInfo[];
-}
+  cardStates: { [key: number]: boolean[] };
+};
 
 const initialState: PlayerCardsState = {
   playerCards: [],
+  cardStates: {},
 };
 
 export const playerCardsSlice = createSlice({
   name: "playerCards",
   initialState,
   reducers: {
+    initializePlayerCards: (
+      state,
+      action: PayloadAction<{ cardsInfo: CardInfo[]; numOfCards: number }>,
+    ) => {
+      state.playerCards = action.payload.cardsInfo;
+      state.cardStates = {};
+      action.payload.cardsInfo.forEach((_, index) => {
+        state.cardStates[index] = Array(9).fill(true);
+      });
+    },
+    updateCardState: (
+      state,
+      action: PayloadAction<{
+        cardId: number;
+        elementIndex: number;
+        show: boolean;
+      }>,
+    ) => {
+      if (state.cardStates[action.payload.cardId]) {
+        state.cardStates[action.payload.cardId][action.payload.elementIndex] =
+          action.payload.show;
+      }
+    },
     updatePlayerCards: (state, action: PayloadAction<CardInfo[]>) => {
       state.playerCards = action.payload;
     },
@@ -54,15 +75,6 @@ export const playerCardsSlice = createSlice({
         [key]: generateNewValueForKey(key),
       }));
     },
-    initializePlayerCards: (
-      state,
-      action: PayloadAction<{ cardsInfo: CardsInfo; numOfCards: number }>,
-    ) => {
-      const { cardsInfo, numOfCards } = action.payload;
-      state.playerCards = Array.from({ length: numOfCards }, () =>
-        getRandomElement(cardsInfo),
-      );
-    },
   },
 });
 
@@ -71,10 +83,14 @@ export const {
   updateCardProperty,
   swapCardProperty,
   updateAllCardsProperty,
+  updateCardState,
   initializePlayerCards,
 } = playerCardsSlice.actions;
+
+export default playerCardsSlice.reducer;
 
 export const selectPlayerCards = (state: RootState) =>
   state.playerCards.playerCards;
 
-export default playerCardsSlice.reducer;
+export const selectCardState = (state: RootState, cardId: number) =>
+  state.playerCards.cardStates[cardId];

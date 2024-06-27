@@ -2,7 +2,7 @@ import GameInfo from "../components/game/gameInfo";
 import PlayerCardList from "../components/game/playerCardList";
 import { CardsInfo } from "../types/types";
 import Header from "../components/common/header";
-import { NUM_OF_CARDS } from "../const";
+import { NUM_OF_CARDS } from "../constants/constants";
 import Footer from "../components/common/footer";
 
 type GameScreenProps = {

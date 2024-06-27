@@ -15,7 +15,7 @@ export type BunkerInfo = {
 export type CardInfo = {
   profession: string;
   bio: string;
-  hobby:string;
+  hobby: string;
   inventory: string;
   phobia: string;
   health: string;
@@ -24,7 +24,7 @@ export type CardInfo = {
   actionSecond: string;
   id: string;
   order: string;
-}; 
+};
 
 export type CardsInfo = CardInfo[];
 export type BunkersData = BunkerInfo[];

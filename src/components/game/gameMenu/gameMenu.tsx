@@ -14,7 +14,7 @@ import {
   updateAllCardsProperty,
   updateCardProperty,
 } from "../../../store/slices/playerCardsSlice";
-import { NUM_OF_CARDS } from "../../../const";
+import { NUM_OF_CARDS } from "../../../constants/constants";
 
 function GameMenu(): JSX.Element {
   const [currentAction, setCurrentAction] = useState<string | null>(null);
@@ -48,15 +48,17 @@ function GameMenu(): JSX.Element {
 
   const handleUpdateCardProperty = () => {
     if (selectedIndex1 !== null && property !== "") {
-      dispatch(updateCardProperty({
-        index: selectedIndex1,
-        key: property as keyof CardInfo,
-      }));
+      dispatch(
+        updateCardProperty({
+          index: selectedIndex1,
+          key: property as keyof CardInfo,
+        }),
+      );
       resetActions();
     } else {
       validateFields();
     }
-    console.log()
+    console.log();
   };
 
   const handleUpdateAllCardsProperty = () => {
@@ -81,11 +83,13 @@ function GameMenu(): JSX.Element {
         setWarningMessage("Номера участников не должны совпадать.");
         return;
       }
-      dispatch(swapCardProperty({
-        index1: selectedIndex1,
-        index2: selectedIndex2,
-        property: property as keyof CardInfo,
-      }));
+      dispatch(
+        swapCardProperty({
+          index1: selectedIndex1,
+          index2: selectedIndex2,
+          property: property as keyof CardInfo,
+        }),
+      );
       resetActions();
     }
   };
