@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import apiClient from "../../axiosConfig";
 import Input from "../ui/input";
 import Button from "../ui/button";
 
@@ -6,6 +8,28 @@ function RegisterForm(): JSX.Element {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const registerMutation = useMutation({
+    mutationFn: async ({
+      username,
+      password,
+    }: {
+      username: string;
+      password: string;
+    }) => {
+      const response = await apiClient.post("/auth/register", {
+        username,
+        password,
+      });
+      return response.data.token;
+    },
+    onSuccess: (token) => {
+      localStorage.setItem("token", token);
+    },
+    onError: () => {
+      console.error("Ошибка регистрации");
+    },
+  });
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -24,11 +48,10 @@ function RegisterForm(): JSX.Element {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Пароли не совпадают");
+      console.error("Пароли не совпадают");
       return;
     }
-    console.log("Username:", username);
-    console.log("Password:", password);
+    registerMutation.mutate({ username, password });
   };
 
   return (
@@ -37,6 +60,9 @@ function RegisterForm(): JSX.Element {
       className="rounded-lg bg-white p-6 shadow-lg dark:bg-slate-800"
     >
       <h2 className="mb-4 text-center text-2xl font-bold">Регистрация</h2>
+      {registerMutation.isError && (
+        <p className="mb-4 text-center text-red-500">Ошибка регистрации</p>
+      )}
       <div className="mb-4">
         <label htmlFor="register-username" className="mb-1 block">
           Логин
@@ -81,8 +107,12 @@ function RegisterForm(): JSX.Element {
           required
         />
       </div>
-      <Button type="submit" className="mt-6 w-full">
-        Зарегистрироваться
+      <Button
+        type="submit"
+        className="mt-6 w-full"
+        disabled={registerMutation.isPending}
+      >
+        {registerMutation.isPending ? "Регистрация..." : "Зарегистрироваться"}
       </Button>
     </form>
   );

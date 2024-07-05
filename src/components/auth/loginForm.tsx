@@ -1,10 +1,35 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import apiClient from "../../axiosConfig"; /// настроить конфиг
 import Input from "../ui/input";
 import Button from "../ui/button";
 
 function LoginForm(): JSX.Element {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const loginMutation = useMutation({
+    mutationFn: async ({
+      username,
+      password,
+    }: {
+      username: string;
+      password: string;
+    }) => {
+      const response = await apiClient.post("/", { // путь к апи
+        username,
+        password,
+      });
+      return response.data.token;
+    },
+    onSuccess: (token) => {
+      localStorage.setItem("token", token);
+      window.location.href = ""; /// Указать путь
+    },
+    onError: (error) => {
+      console.error("Ошибка авторизации", error);
+    },
+  });
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -16,8 +41,7 @@ function LoginForm(): JSX.Element {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
+    loginMutation.mutate({ username, password });
   };
 
   return (
@@ -26,6 +50,9 @@ function LoginForm(): JSX.Element {
       className="rounded-lg bg-white p-6 shadow-lg dark:bg-slate-800"
     >
       <h2 className="mb-4 text-center text-2xl font-bold">Вход</h2>
+      {loginMutation.isError && (
+        <p className="mb-4 text-center text-red-500">Ошибка авторизации</p>
+      )}
       <div className="mb-4">
         <label htmlFor="login-username" className="mb-1 block">
           Логин
@@ -55,8 +82,12 @@ function LoginForm(): JSX.Element {
           required
         />
       </div>
-      <Button type="submit" className="mt-6 w-full">
-        Войти
+      <Button
+        type="submit"
+        className="mt-6 w-full"
+        disabled={loginMutation.isPending}
+      >
+        {loginMutation.isPending ? "Вход..." : "Войти"}
       </Button>
     </form>
   );
